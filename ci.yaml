@@ -1,0 +1,86 @@
+microservices:
+  sample-project-frontend:
+    repo : http://kitset.gitlab.io/user_name/project_name/frontend_ui.git
+    image:
+      dockerfile: Dockerfile
+    environment:
+      GATEWAY_URL: http://gateway
+    depends_on:
+      - gateway
+
+  sample-project-gateway:
+    repo : http://kitset.gitlab.io/user_name/project_name/gateway.git
+    image:
+      dockerfile: Dockerfile
+    environment:
+      BACKEND_API_URL: http://backend_api
+    depends_on:
+      - backend_api
+
+  sample-project-backend:
+    repo : http://kitset.gitlab.io/user_name/project_name/backend_api.git
+    image:
+      dockerfile: Dockerfile
+    environment:
+      DB_DIALECT : mysql
+      DB_HOST : its-mysql
+      DB_PORT : 3306
+      DB_NAME : backend_api_db
+      DB_USERNAME : root
+      DB_PASSWORD : mypassword
+    depends_on:
+      - mysql
+
+  mysql:
+    image : mysql:5.6 # Pull from docker hub if string
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+
+builds:
+  app_environments:
+    testing:
+      suites:
+
+      # --- First suite -- #
+        gw_and_backend:
+          services:
+            gateway:
+              environment:
+            backend_api:
+              environment:
+                DB_NAME: backend_testing_db
+            mysql:
+              environment:
+          steps:
+            - 1 check the backend:
+              backend_api :
+                - npm test
+            - 2 check the gateway:
+              gateway:
+                - npm test
+
+      # --- Second suite -- #
+        full_stack:
+          services:
+            frontend_ui:
+            gateway:
+            backend_api:
+              environment:
+                DB_NAME: backend_testing_db
+            mysql:
+              environment:
+          steps:
+            - step 1:
+              backend_api:
+                - sequelize db:migrate
+            - step 2:
+              backend_api:
+                - npm test
+              gateway:
+                - npm test
+              frontend_ui:
+                - npm test
+
+    staging:
+
+    production:

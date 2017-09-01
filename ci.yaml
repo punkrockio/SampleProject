@@ -6,7 +6,7 @@ microservices:
     environment:
       GATEWAY_URL: http://sample-project-gateway
     depends_on:
-      - gateway
+      - sample-project-gateway
 
   sample-project-gateway:
     repo : https://github.com/Domnom/SampleProject_gateway.git
@@ -15,7 +15,7 @@ microservices:
     environment:
       BACKEND_API_URL: http://backend_api
     depends_on:
-      - backend_api
+      - sample-project-backend
 
   sample-project-backend:
     repo : https://github.com/Domnom/SampleProject_backend.git

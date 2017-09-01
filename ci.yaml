@@ -1,15 +1,15 @@
 microservices:
   sample-project-frontend:
-    repo : http://kitset.gitlab.io/user_name/project_name/frontend_ui.git
+    repo : https://github.com/Domnom/SampleProject_frontend.git
     image:
       dockerfile: Dockerfile
     environment:
-      GATEWAY_URL: http://gateway
+      GATEWAY_URL: http://sample-project-gateway
     depends_on:
       - gateway
 
   sample-project-gateway:
-    repo : http://kitset.gitlab.io/user_name/project_name/gateway.git
+    repo : https://github.com/Domnom/SampleProject_gateway.git
     image:
       dockerfile: Dockerfile
     environment:
@@ -18,7 +18,7 @@ microservices:
       - backend_api
 
   sample-project-backend:
-    repo : http://kitset.gitlab.io/user_name/project_name/backend_api.git
+    repo : https://github.com/Domnom/SampleProject_backend.git
     image:
       dockerfile: Dockerfile
     environment:
@@ -43,42 +43,42 @@ builds:
 
       # --- First suite -- #
         gw_and_backend:
-          services:
-            gateway:
+          microservices:
+            sample-project-gateway:
               environment:
-            backend_api:
+            sample-project-backend:
               environment:
                 DB_NAME: backend_testing_db
             mysql:
               environment:
           steps:
             - 1 check the backend:
-              backend_api :
+              sample-project-backend:
                 - npm test
             - 2 check the gateway:
-              gateway:
+              sample-project-gateway:
                 - npm test
 
       # --- Second suite -- #
         full_stack:
-          services:
-            frontend_ui:
-            gateway:
-            backend_api:
+          microservices:
+            sample-project-frontend:
+            sample-project-gateway:
+            sample-project-backend:
               environment:
                 DB_NAME: backend_testing_db
             mysql:
               environment:
           steps:
             - step 1:
-              backend_api:
+              sample-project-backend:
                 - sequelize db:migrate
             - step 2:
-              backend_api:
+              sample-project-backend:
                 - npm test
-              gateway:
+              sample-project-gateway:
                 - npm test
-              frontend_ui:
+              sample-project-frontend:
                 - npm test
 
     staging:

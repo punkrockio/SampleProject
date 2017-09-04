@@ -32,7 +32,7 @@ microservices:
       - mysql
 
   mysql:
-    image : mysql:5.6 # Pull from docker hub if string
+    image : mysql:5.7 # Pull from docker hub if string
     environment:
       MYSQL_ROOT_PASSWORD: mypassword
 
@@ -53,7 +53,7 @@ builds:
             - 1 check the backend:
               sample-project-backend:
                 - npm test
-                
+
         gw_and_backend:
           microservices:
             sample-project-gateway:

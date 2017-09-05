@@ -13,7 +13,7 @@ microservices:
     image:
       dockerfile: Dockerfile
     environment:
-      BACKEND_API_URL: http://backend_api
+      BACKEND_API_URL: http://sample-project-backend
     depends_on:
       - sample-project-backend
 

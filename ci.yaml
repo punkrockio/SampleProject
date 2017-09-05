@@ -51,8 +51,8 @@ builds:
               environment:
           steps:
             - 1 check the backend:
-              - sample-project-backend:
-                - npm test
+              sample-project-backend:
+               - npm test
 
         gw_and_backend:
           microservices:
@@ -65,10 +65,10 @@ builds:
               environment:
           steps:
             - 1 check the backend:
-              - sample-project-backend:
+              sample-project-backend:
                 - npm test
             - 2 check the gateway:
-              - sample-project-gateway:
+              sample-project-gateway:
                 - npm test
 
       # --- Second suite -- #
@@ -83,14 +83,14 @@ builds:
               environment:
           steps:
             - step 1:
-              - sample-project-backend:
+              sample-project-backend:
                 - sequelize db:migrate
             - step 2:
-              - sample-project-backend:
+              sample-project-backend:
                 - npm test
-              - sample-project-gateway:
+              sample-project-gateway:
                 - npm test
-              - sample-project-frontend:
+              sample-project-frontend:
                 - npm test
 
     staging:

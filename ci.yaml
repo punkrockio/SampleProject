@@ -53,6 +53,14 @@ builds:
           - 1 check the backend:
               sample-project-backend:
               - npm test
+          - step 2
+              sample-project-backend:
+              - echo "test me 1"
+              - echo "test me 2"
+              - echo "test me 3"
+          - step 3
+              sample-project-backend:
+              - echo "step 3 test me"
 
         gw_and_backend:
           microservices:
@@ -67,7 +75,13 @@ builds:
           - 1 check the backend:
               sample-project-backend:
               - npm test
+              sample-project-gateway:
+              - echo "gateway test 1"
+              - echo "gateway test 2"
           - 2 check the gateway:
+              sample-project-backend:
+              - echo "backend test 1"
+              - echo "backend test 2"
               sample-project-gateway:
               - npm test
 

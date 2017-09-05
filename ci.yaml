@@ -88,8 +88,11 @@ builds:
           - step 2:
               sample-project-backend:
               - npm test
+              - echo "substep 2 sample-project-backend"
               sample-project-gateway:
               - npm test
+              - echo "substep 2 sample-project-gateway"
+              - echo "substep 3 sample-project-gateway"
               sample-project-frontend:
               - npm test
 

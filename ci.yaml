@@ -35,6 +35,12 @@ microservices:
     image : mysql:5.7 # Pull from docker hub if string
     environment:
       MYSQL_ROOT_PASSWORD: mypassword
+    healthcheck:
+      test : mysql -u root -p$MYSQL_ROOT_PASSWORD -h localhost -e exit
+      interval: 2s
+      timeout: 2s
+      retries: 20
+      start_period: 10s
 
 builds:
   app_environments:

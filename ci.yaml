@@ -36,7 +36,7 @@ microservices:
     environment:
       MYSQL_ROOT_PASSWORD: mypassword
     healthcheck:
-      test : "CMD-SHELL mysql -u root -pmypassword -h localhost -e exit"
+      test : "mysql -u root -pmypassword -h localhost -e exit"
       interval: 2s
       timeout: 2s
       retries: 20

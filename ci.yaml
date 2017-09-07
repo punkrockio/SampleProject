@@ -29,7 +29,7 @@ microservices:
       DB_USERNAME : root
       DB_PASSWORD : mypassword
     depends_on:
-      - mysql
+      - sample-mysql
 
   sample-mysql:
     image : mysql:5.7 # Pull from docker hub if string
@@ -53,20 +53,16 @@ builds:
             sample-project-backend:
               environment:
                 DB_NAME: backend_testing_db
-            mysql:
+            sample-mysql:
               environment:
           steps:
-          - 1 check the backend:
+          - Build database:
+              sample-mysql:
+              - mysql -u root -p$MYSQL_ROOT_PASSWORD -e 'create database backend_testing_db;'
+          - Check the backend:
               sample-project-backend:
+              - ./node_modules/.bin/sequelize db:migrate
               - npm test
-          - step 2:
-              sample-project-backend:
-              - echo "test me 1"
-              - echo "test me 2"
-              - echo "test me 3"
-          - step 3:
-              sample-project-backend:
-              - echo "step 3 test me"
 
         gw_and_backend:
           microservices:
@@ -75,7 +71,7 @@ builds:
             sample-project-backend:
               environment:
                 DB_NAME: backend_testing_db
-            mysql:
+            sample-mysql:
               environment:
           steps:
           - 1 check the backend:
@@ -99,7 +95,7 @@ builds:
             sample-project-backend:
               environment:
                 DB_NAME: backend_testing_db
-            mysql:
+            sample-mysql:
               environment:
           steps:
           - step 1:

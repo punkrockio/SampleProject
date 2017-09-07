@@ -23,7 +23,7 @@ microservices:
       dockerfile: Dockerfile
     environment:
       DB_DIALECT : mysql
-      DB_HOST : its-mysql
+      DB_HOST : sample-mysql
       DB_PORT : 3306
       DB_NAME : backend_api_db
       DB_USERNAME : root
@@ -31,7 +31,7 @@ microservices:
     depends_on:
       - mysql
 
-  mysql:
+  sample-mysql:
     image : mysql:5.7 # Pull from docker hub if string
     environment:
       MYSQL_ROOT_PASSWORD: mypassword

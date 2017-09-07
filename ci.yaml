@@ -35,6 +35,7 @@ microservices:
     image : mysql:5.7 # Pull from docker hub if string
     environment:
       MYSQL_ROOT_PASSWORD: mypassword
+      MYSQL_DATABASE : sample-mysql-db
     healthcheck:
       test : "mysql -u root -pmypassword -h localhost -e exit"
       interval: 2s
@@ -55,10 +56,8 @@ builds:
                 DB_NAME: backend_testing_db
             sample-mysql:
               environment:
+                MYSQL_DATABASE : backend_testing_db
           steps:
-          - Build database:
-              sample-mysql:
-              - "mysql -u root -pmypassword -e 'create database backend_testing_db;'"
           - Check the backend:
               sample-project-backend:
               - ./node_modules/.bin/sequelize db:migrate

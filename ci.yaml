@@ -58,7 +58,7 @@ builds:
           steps:
           - Build database:
               sample-mysql:
-              - mysql -u root -p$MYSQL_ROOT_PASSWORD -e 'create database backend_testing_db;'
+              - "mysql -u root -pmypassword -e 'create database backend_testing_db;'"
           - Check the backend:
               sample-project-backend:
               - ./node_modules/.bin/sequelize db:migrate

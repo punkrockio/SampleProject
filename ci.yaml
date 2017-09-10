@@ -112,5 +112,18 @@ builds:
               - npm test
 
     staging:
+      suites:
+        full_stack:
+          microservices:
+            sample-project-frontend:
+              expose_port: 80 # If this is set then this will be accessible through the web --expose and --label traefik.port=80
+            sample-project-gateway:
+            sample-project-backend:
+              environment:
+                DB_NAME: staging_fullstack_db
+            sample-mysql:
+              environment:
+                MYSQL_DATABASE: staging_fullstack_db
+  
 
     production:

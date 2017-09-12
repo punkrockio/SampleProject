@@ -99,7 +99,7 @@ builds:
           steps:
           - step 1:
               sample-project-backend:
-              - sequelize db:migrate
+              - ./node_modules/.bin/sequelize db:migrate
           - step 2:
               sample-project-backend:
               - npm test
@@ -118,12 +118,16 @@ builds:
             sample-project-frontend:
               expose_port: 80 # If this is set then this will be accessible through the web --expose and --label traefik.port=80
             sample-project-gateway:
+              expose_port: 80
             sample-project-backend:
               environment:
                 DB_NAME: staging_fullstack_db
             sample-mysql:
               environment:
                 MYSQL_DATABASE: staging_fullstack_db
-  
+          steps:
+          - Migrations and seeding:
+              sample-project-backend:
+              - ./node_modules/.bin/sequelize db:migrate
 
     production:

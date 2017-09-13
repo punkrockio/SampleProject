@@ -5,6 +5,7 @@ microservices:
       dockerfile: Dockerfile
     environment:
       GATEWAY_URL: http://sample-project-gateway
+      SELENIUM_HUB_URL: http://browser_automation_tests:24444/wd/hub
     depends_on:
       - sample-project-gateway
 
@@ -19,7 +20,7 @@ microservices:
 
   sample-project-backend:
     repo : https://github.com/Domnom/SampleProject_backend.git
-    image:
+    image:2
       dockerfile: Dockerfile
     environment:
       DB_DIALECT : mysql
@@ -43,8 +44,16 @@ microservices:
       retries: 20
       start_period: 10s
 
+  browser_automation_tests:
+    image: superlogical/browser_automation_tests
+    environment:
+      NOVNC: 'true'
+      
+
 builds:
   app_environments:
+    dev:
+      docker-compose: docker-compose.dev.yml
     testing:
       suites:
 
@@ -113,12 +122,30 @@ builds:
 
     staging:
       suites:
+        frontend_only:
+          microservices:
+            sample-project-frontend:
+              expose_port: 80 # If this is set then this will be accessible through the web --expose and --label traefik.port=80
+            browser_automation_tests:
+              expose_port:
+              - port : 24444
+                dns  : hub
+              - port : 26080
+                dns  : vnc
+
         full_stack:
           microservices:
             sample-project-frontend:
               expose_port: 80 # If this is set then this will be accessible through the web --expose and --label traefik.port=80
             sample-project-gateway:
-              expose_port: 80
+              expose_port: 
+              - port : 80
+                dns : my.80
+              - port: 678
+            browser_automation_tests:
+              expose_port:
+              - port : 24444
+              - port : 26080
             sample-project-backend:
               environment:
                 DB_NAME: staging_fullstack_db
@@ -129,5 +156,7 @@ builds:
           - Migrations and seeding:
               sample-project-backend:
               - ./node_modules/.bin/sequelize db:migrate
-
+          - Frontend tests:
+              sample-project-frontend:
+              - npm test
     production:

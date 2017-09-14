@@ -138,10 +138,10 @@ builds:
                 dns  : hub
               - port : 26080
                 dns  : vnc
-            steps:
-            - Browser testing:
-                sample-project-frontend:
-                - mocha -t 100000
+          steps:
+          - Browser testing:
+              sample-project-frontend:
+              - mocha -t 100000
 
         full_stack:
           microservices:

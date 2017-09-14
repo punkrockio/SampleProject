@@ -45,7 +45,7 @@ microservices:
       start_period: 10s
 
   browser_automation_tests:
-    image: superlogical/browser_automation_tests
+    image: superlogical/docker_bowser_automation
     environment:
       NOVNC: 'true'
       

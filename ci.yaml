@@ -4,6 +4,7 @@ microservices:
     image:
       dockerfile: Dockerfile
     environment:
+      FRONTEND_SERVICE_NAME : http://sample-project-frontend
       GATEWAY_URL: http://sample-project-gateway
       SELENIUM_HUB_URL: http://browser_automation_tests:24444/wd/hub
     depends_on:

@@ -49,6 +49,7 @@ microservices:
     image: superlogical/docker_bowser_automation
     environment:
       NOVNC: 'true'
+      VIDEO: 'true'
     healthcheck:
       test : "wait_all_done 1s"
       interval : 10s

@@ -49,7 +49,6 @@ microservices:
     image: superlogical/docker_bowser_automation
     environment:
       NOVNC: 'true'
-      VIDEO: 'true'
     healthcheck:
       test : "wait_all_done 1s"
       interval : 10s
@@ -140,10 +139,15 @@ builds:
               - port : 26080
                 dns  : vnc
           steps:
+          - Start recording:
+              browser_automation_tests:
+              - start-video
           - Browser testing:
               sample-project-frontend:
               - mocha -t 100000
-
+          - Stop recording:
+              browser_automation_tests:
+              - stop-video
         full_stack:
           microservices:
             sample-project-frontend:

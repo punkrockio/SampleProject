@@ -20,7 +20,7 @@ microservices:
 
   sample-project-backend:
     repo : https://github.com/Domnom/SampleProject_backend.git
-    image:2
+    image:
       dockerfile: Dockerfile
     environment:
       DB_DIALECT : mysql

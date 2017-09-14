@@ -125,8 +125,8 @@ builds:
       suites:
         frontend_only:
           microservices:
-            sample-project-frontend:
-              expose_port: 80 # If this is set then this will be accessible through the web --expose and --label traefik.port=80
+            # sample-project-frontend:
+            #   expose_port: 80 # If this is set then this will be accessible through the web --expose and --label traefik.port=80
             browser_automation_tests:
               expose_port:
               - port : 24444

@@ -8,7 +8,7 @@ microservices:
       GATEWAY_URL: http://sample-project-gateway
       SELENIUM_HUB_URL: http://browser_automation_tests:24444/wd/hub
     depends_on:
-      - sample-project-gateway
+      # - sample-project-gateway
 
   sample-project-gateway:
     repo : https://github.com/Domnom/SampleProject_gateway.git

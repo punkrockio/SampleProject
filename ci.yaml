@@ -49,6 +49,11 @@ microservices:
     image: superlogical/docker_bowser_automation
     environment:
       NOVNC: 'true'
+    healthcheck:
+      test : "wait_all_done 1s"
+      interval : 10s
+      retries: 10
+      start_period: 30s
       
 
 builds:
@@ -125,14 +130,18 @@ builds:
       suites:
         frontend_only:
           microservices:
-            # sample-project-frontend:
-            #   expose_port: 80 # If this is set then this will be accessible through the web --expose and --label traefik.port=80
+            sample-project-frontend:
+              expose_port: 80 # If this is set then this will be accessible through the web --expose and --label traefik.port=80
             browser_automation_tests:
               expose_port:
               - port : 24444
                 dns  : hub
               - port : 26080
                 dns  : vnc
+            steps:
+            - Browser testing
+                sample-project-frontend:
+                - mocha -t 100000
 
         full_stack:
           microservices:

@@ -139,7 +139,7 @@ builds:
               - port : 26080
                 dns  : vnc
             steps:
-            - Browser testing
+            - Browser testing:
                 sample-project-frontend:
                 - mocha -t 100000
 

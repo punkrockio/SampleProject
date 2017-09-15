@@ -49,7 +49,7 @@ microservices:
     image: superlogical/docker_bowser_automation
     environment:
       NOVNC: 'true'
-      VIDEO_CONVERSION_MAX_WAIT: 300s
+      VIDEO_CONVERSION_MAX_WAIT: 600s
     healthcheck:
       test : "wait_all_done 1s"
       interval : 10s

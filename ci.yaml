@@ -146,9 +146,9 @@ builds:
           - Browser testing:
               sample-project-frontend:
               - mocha -t 100000
-          - Stop recording:
-              browser_automation_tests:
-              - stop-video
+          # - Stop recording:
+          #     browser_automation_tests:
+          #     - stop-video
         full_stack:
           microservices:
             sample-project-frontend:

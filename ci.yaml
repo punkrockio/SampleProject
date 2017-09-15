@@ -144,19 +144,19 @@ builds:
             #   - port : 26080
             #     dns  : vnc
             backstop_css_tests:
-              mount_data:
+              copy_data:
                 sample-project-frontend:
                 - /usr/src/app/test/backstop_tests:/src/sample-project-frontend  # sample-project-frontend path : backstop_css_tests path (absolute paths)
           steps:
           # - Start recording:
           #     browser_automation_tests:
           #     - start-video
-          - Browser testing:
-              sample-project-frontend:
-              - mocha -t 100000
           - Css testing
               backstop_css_tests:
               - backstop test --config /src/sample-project-frontend/backstop.json
+          # - Browser testing:
+          #     sample-project-frontend:
+          #     - mocha -t 100000
           # - Stop recording:
           #     browser_automation_tests:
           #     - stop-video

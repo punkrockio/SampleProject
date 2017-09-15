@@ -55,6 +55,10 @@ microservices:
       interval : 20s
       retries: 10
       start_period: 30s
+
+  backstop_css_tests:
+    image: domnom/backstopjs-environment
+
       
 
 builds:
@@ -133,19 +137,26 @@ builds:
           microservices:
             sample-project-frontend:
               expose_port: 80 # If this is set then this will be accessible through the web --expose and --label traefik.port=80
-            browser_automation_tests:
-              expose_port:
-              - port : 24444
-                dns  : hub
-              - port : 26080
-                dns  : vnc
+            # browser_automation_tests:
+            #   expose_port:
+            #   - port : 24444
+            #     dns  : hub
+            #   - port : 26080
+            #     dns  : vnc
+            backstop_css_tests:
+              mount_data:
+                sample-project-frontend:
+                - /usr/src/app/test/backstop_tests:/src/sample-project-frontend  # sample-project-frontend path : backstop_css_tests path (absolute paths)
           steps:
-          - Start recording:
-              browser_automation_tests:
-              - start-video
+          # - Start recording:
+          #     browser_automation_tests:
+          #     - start-video
           - Browser testing:
               sample-project-frontend:
               - mocha -t 100000
+          - Css testing
+              backstop_css_tests:
+              - backstop test --config /src/sample-project-frontend/backstop.json
           # - Stop recording:
           #     browser_automation_tests:
           #     - stop-video

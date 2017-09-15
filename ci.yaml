@@ -151,7 +151,7 @@ builds:
           # - Start recording:
           #     browser_automation_tests:
           #     - start-video
-          - Css testing
+          - Css testing:
               backstop_css_tests:
               - backstop init
               - backstop test --config /src/backstop.json

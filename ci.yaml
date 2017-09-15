@@ -52,7 +52,7 @@ microservices:
       VIDEO_CONVERSION_MAX_WAIT: 600s
     healthcheck:
       test : "wait_all_done 1s"
-      interval : 10s
+      interval : 20s
       retries: 10
       start_period: 30s
       

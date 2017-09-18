@@ -153,7 +153,7 @@ builds:
           #     - start-video
           - Css testing:
               backstop_css_tests:
-              - backstop test --config /src/backstop_tests/backstop.js
+              - cd backstop_tests && backstop test --config backstop.js
           # - Browser testing:
           #     sample-project-frontend:
           #     - mocha -t 100000

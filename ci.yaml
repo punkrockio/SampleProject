@@ -147,13 +147,13 @@ builds:
               copy_data:
                 sample-project-frontend:
                 - /usr/src/app/test/backstop_tests:/src  # sample-project-frontend path : backstop_css_tests path (absolute paths)
-          # steps:
+          steps:
           # - Start recording:
           #     browser_automation_tests:
           #     - start-video
           - Css testing:
               backstop_css_tests:
-              - backstop test --config /src/backstop_tests/backstop.json
+              - backstop test --config /src/backstop_tests/backstop.json  
           # - Browser testing:
           #     sample-project-frontend:
           #     - mocha -t 100000

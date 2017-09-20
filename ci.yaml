@@ -42,8 +42,8 @@ microservices:
       test : "mysql -u root -pmypassword -h localhost -e exit"
       interval: 2s
       timeout: 2s
-      retries: 20
-      start_period: 10s
+      retries: 30
+      start_period: 20s
 
   browser_automation_tests:
     image: superlogical/docker_bowser_automation

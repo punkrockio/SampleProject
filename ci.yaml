@@ -137,12 +137,12 @@ builds:
           microservices:
             sample-project-frontend:
               expose_port: 80 # If this is set then this will be accessible through the web --expose and --label traefik.port=80
-            # browser_automation_tests:
-            #   expose_port:
-            #   - port : 24444
-            #     dns  : hub
-            #   - port : 26080
-            #     dns  : vnc
+            browser_automation_tests:
+              expose_port:
+              - port : 24444
+                dns  : hub
+              - port : 26080
+                dns  : vnc
             backstop_css_tests:
               copy_data:
                 sample-project-frontend:

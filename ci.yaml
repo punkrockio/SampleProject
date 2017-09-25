@@ -68,6 +68,20 @@ builds:
     testing:
       suites:
 
+      # -- For CI Mocha testing -- #
+        mocha_test:
+          microservices:
+            sample-project-frontend:
+            sample-project-gateway:
+          steps:
+          - Frontend echo:
+            sample-project-frontend:
+            - echo "frontend echo"
+          - Gateway echo:
+            sample-project-gateway:
+            - echo "gateway echo"
+
+
       # --- First suite -- #
         backend_only:
           microservices:

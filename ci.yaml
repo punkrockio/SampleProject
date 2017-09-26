@@ -73,6 +73,7 @@ builds:
           microservices:
             sample-project-frontend:
             sample-project-gateway:
+            doesnt-exist:
           steps:
           - Frontend echo:
             sample-project-frontend:

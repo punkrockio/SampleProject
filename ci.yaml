@@ -17,7 +17,7 @@ microservices:
     environment:
       BACKEND_API_URL: http://sample-project-backend
     depends_on:
-      - sample-project-frontend
+      - sample-project-backend
 
   sample-project-backend:
     repo : https://github.com/Domnom/SampleProject_backend.git
@@ -31,7 +31,7 @@ microservices:
       DB_USERNAME : root
       DB_PASSWORD : mypassword
     depends_on:
-      - sample-mysql
+      - sample-project-gateway
 
   sample-mysql:
     image : mysql:5.7 # Pull from docker hub if string

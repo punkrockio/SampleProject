@@ -75,11 +75,11 @@ builds:
             sample-project-gateway:
           steps:
           - Frontend echo:
-            sample-project-frontend:
-            - echo "frontend echo"
+              sample-project-frontend:
+              - echo "frontend echo"
           - Gateway echo:
-            sample-project-gateway:
-            - echo "gateway echo"
+              sample-project-gateway:
+              - echo "gateway echo"
 
 
       # --- First suite -- #

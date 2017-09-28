@@ -8,7 +8,7 @@ microservices:
       GATEWAY_URL: http://sample-project-gateway
       SELENIUM_HUB_URL: http://browser_automation_tests:24444/wd/hub
     depends_on:
-      # - sample-project-gateway
+      - sample-project-gateway
 
   sample-project-gateway:
     repo : https://github.com/Domnom/SampleProject_gateway.git
@@ -147,6 +147,20 @@ builds:
 
     staging:
       suites:
+        mocha_test:
+          microservices:
+            sample-project-frontend:
+              expose_port:
+              - port : 80
+            sample-project-gateway:
+          steps:
+          - Frontend echo:
+              sample-project-frontend:
+              - echo "frontend echo"
+          - Gateway echo:
+              sample-project-gateway:
+              - echo "gateway echo"
+
         frontend_only:
           microservices:
             sample-project-frontend:

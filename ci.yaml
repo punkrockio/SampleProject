@@ -130,6 +130,7 @@ builds:
                 DB_NAME: backend_testing_db
             sample-mysql:
               environment:
+                MYSQL_DATABASE: backend_testing_db
           steps:
           - step 1:
               sample-project-backend:

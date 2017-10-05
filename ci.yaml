@@ -53,8 +53,8 @@ microservices:
     healthcheck:
       test : "wait_all_done 1s"
       interval : 20s
-      retries: 1
-      start_period: 3s
+      retries: 10
+      start_period: 30s
 
   backstop_css_tests:
     image: domnom/backstopjs-environment

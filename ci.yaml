@@ -1,6 +1,6 @@
 microservices:
   sample-project-frontend:
-    repo : https://github.com/Domnom/SampleProject_frontend.git
+    repo : https://github.com/punkrockio/SampleProject_frontend.git
     image:
       dockerfile: Dockerfile
     environment:
@@ -11,7 +11,7 @@ microservices:
       # - sample-project-gateway
 
   sample-project-gateway:
-    repo : https://github.com/Domnom/SampleProject_gateway.git
+    repo : https://github.com/punkrockio/SampleProject_gateway.git
     image:
       dockerfile: Dockerfile
     environment:
@@ -20,7 +20,7 @@ microservices:
       - sample-project-backend
 
   sample-project-backend:
-    repo : https://github.com/Domnom/SampleProject_backend.git
+    repo : https://github.com/punkrockio/SampleProject_backend.git
     image:
       dockerfile: Dockerfile
     environment:
